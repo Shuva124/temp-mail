@@ -2,9 +2,6 @@ import pool from "./db.js";
 
 export const handleIncomingMail = async (req, res) => {
   try {
-    console.log("Webhook hit");
-    console.log(req.body);
-
     const recipient = req.body.recipient;
     const sender = req.body.sender;
     const subject = req.body.subject;
