@@ -1,6 +1,5 @@
-import pool from "./db.js";   // 👈 SAME FOLDER
+import pool from "./db.js";
 
-// 📩 Handle incoming Mailgun webhook
 export const handleIncomingMail = async (req, res) => {
   try {
     console.log("Webhook hit");
@@ -35,16 +34,13 @@ export const handleIncomingMail = async (req, res) => {
       ]
     );
 
-    return res.status(200).send("OK"); // important
+    return res.status(200).send("OK");
   } catch (err) {
     console.error("Webhook error:", err);
     return res.status(500).send("Server error");
   }
 };
 
-
-
-// 📥 Fetch inbox emails
 export const getEmails = async (req, res) => {
   try {
     const { address } = req.params;
