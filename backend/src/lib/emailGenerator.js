@@ -25,7 +25,7 @@ function generateAddress() {
 
   const id = nanoid();
 
-  return `${word1}${word2}${id}@neesiuu.xyz`;
+  return `${word1}${word2}${id}@mg.neesiuu.xyz`;
 }
 
 export default generateAddress;

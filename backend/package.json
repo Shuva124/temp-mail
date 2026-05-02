@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "multer": "^2.1.1",
     "nanoid": "^5.1.11",
     "node-cron": "^4.2.1",
     "package.json": "^0.0.0",

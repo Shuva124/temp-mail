@@ -1,12 +1,11 @@
 import express from "express";
 import { handleIncomingMail, getEmails } from "../controllers/mail.controller.js";
-
+import multer from "multer";
+const upload = multer();
 const router = express.Router();
 
-// Mailgun webhook
-router.post("/mailgun", handleIncomingMail);
+router.post("/mailgun", upload.none(), handleIncomingMail);
 
-// Get inbox
 router.get("/emails/:address", getEmails);
 
 export default router;
