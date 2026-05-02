@@ -1,11 +1,23 @@
 import express from "express";
-import "./jobs/cleanup.job.js"
+import dotenv from "dotenv";
+import mailRoutes from "./routes/mail.routes.js";
+import addressRoutes from "./routes/addressRoute.js";
+
+dotenv.config();
 
 const app = express();
 
-import addressRoute from "./routes/addressRoute.js";
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use("/api/address", addressRoute);
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+// ✅ ADD THIS LINE
+app.use("/api/address", addressRoutes);
+
+// existing
+app.use("/webhook", mailRoutes);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
