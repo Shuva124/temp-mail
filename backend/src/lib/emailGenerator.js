@@ -1,5 +1,3 @@
-// backend/src/lib/emailGenerator.js
-
 const { customAlphabet } = require("nanoid");
 
 const nouns = [
@@ -8,10 +6,8 @@ const nouns = [
   'weasel', 'quail', 'finch', 'crane', 'raven', 'lark', 'robin', 'snipe',
 ];
 
-// nanoid generator (only lowercase + numbers)
 const nanoid = customAlphabet('abcdefghijklmnopqrstuvwxyz0123456789', 6);
 
-// shuffle helper
 function shuffleArray(arr) {
   const array = [...arr];
   for (let i = array.length - 1; i > 0; i--) {
@@ -21,15 +17,15 @@ function shuffleArray(arr) {
   return array;
 }
 
-function generateEmail() {
+function generateAddress() {
   const shuffled = shuffleArray(nouns);
 
   const word1 = shuffled[0];
   const word2 = shuffled[1];
 
-  const id = nanoid(); // e.g. k9x2ab
+  const id = nanoid();
 
   return `${word1}${word2}${id}@neesiuu.xyz`;
 }
 
-module.exports = generateEmail;
+module.exports = generateAddress;
