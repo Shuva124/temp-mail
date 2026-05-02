@@ -1,4 +1,4 @@
-const { customAlphabet } = require("nanoid");
+import { customAlphabet } from "nanoid";
 
 const nouns = [
   'fox', 'wolf', 'hawk', 'bear', 'lynx', 'crow', 'deer', 'frog', 'kite',
@@ -28,4 +28,4 @@ function generateAddress() {
   return `${word1}${word2}${id}@neesiuu.xyz`;
 }
 
-module.exports = generateAddress;
+export default generateAddress;

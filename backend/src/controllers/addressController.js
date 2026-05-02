@@ -1,7 +1,7 @@
-const pool = require("../lib/db");
-const generateAddress = require("../lib/emailGenerator");
+import pool from "./db.js";
+import generateAddress from "../lib/emailGenerator.js";
 
-exports.createAddress = async (req, res) => {
+export async function createAddress(req, res) {
   try {
     while (true) {
       const address = generateAddress();
@@ -27,4 +27,4 @@ exports.createAddress = async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Failed to create address" });
   }
-};
+}

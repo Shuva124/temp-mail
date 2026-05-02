@@ -3,8 +3,7 @@ import "./jobs/cleanup.job.js"
 
 const app = express();
 
-const addressRoute = require("./src/route/addressRoute");
-
+import addressRoute from "./routes/addressRoute.js";
 
 app.use("/api/address", addressRoute);
 app.listen(3000, () => {
