@@ -14,10 +14,8 @@ app.use(express.json());
 app.use("/api/address", addressRoutes);
 
 // existing
-app.use("/webhook", mailRoutes);
+app.use("/api/webhook", mailRoutes);
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(3000, () => {
+  console.log(`Server running on port 3000`);
 });

@@ -3,6 +3,9 @@ import pool from "./db.js";   // 👈 SAME FOLDER
 // 📩 Handle incoming Mailgun webhook
 export const handleIncomingMail = async (req, res) => {
   try {
+    console.log("Webhook hit");
+    console.log(req.body);
+
     const recipient = req.body.recipient;
     const sender = req.body.sender;
     const subject = req.body.subject;
@@ -12,9 +15,6 @@ export const handleIncomingMail = async (req, res) => {
       req.body.body_plain ||
       req.body.body;
 
-    console.log("Incoming mail:", { recipient, sender, subject });
-
-    // Check address exists
     const addressRes = await pool.query(
       "SELECT id FROM addresses WHERE address = $1",
       [recipient]
@@ -26,21 +26,16 @@ export const handleIncomingMail = async (req, res) => {
 
     const address_id = addressRes.rows[0].id;
 
-    // Insert email
     await pool.query(
       `INSERT INTO mail (address_id, email)
        VALUES ($1, $2::jsonb)`,
       [
         address_id,
-        JSON.stringify({
-          from: sender,
-          subject,
-          body,
-        }),
+        JSON.stringify({ from: sender, subject, body }),
       ]
     );
 
-    return res.status(200).send("Email stored");
+    return res.status(200).send("OK"); // important
   } catch (err) {
     console.error("Webhook error:", err);
     return res.status(500).send("Server error");
