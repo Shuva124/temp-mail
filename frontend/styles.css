@@ -32,7 +32,6 @@ body {
     display: none !important;
 }
 
-/* Typography & Layout */
 .app-header {
     background-color: var(--bg-panel);
     border-bottom: 1px solid var(--border-color);
@@ -58,7 +57,6 @@ body {
     padding: 2rem;
 }
 
-/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -116,7 +114,6 @@ body {
     color: var(--purple-primary);
 }
 
-/* Landing View */
 .landing-content {
     text-align: center;
     padding: 4rem 1rem;
@@ -136,7 +133,6 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Control Panel */
 .control-panel {
     background: var(--bg-panel);
     padding: 1.5rem;
@@ -192,7 +188,6 @@ body {
     color: var(--danger);
 }
 
-/* Inbox Layout */
 .inbox-layout {
     display: grid;
     grid-template-columns: 350px 1fr;
@@ -264,7 +259,6 @@ body {
     text-overflow: ellipsis;
 }
 
-/* Email Detail Area */
 .email-content {
     flex: 1;
     overflow-y: auto;
@@ -280,38 +274,72 @@ body {
     gap: 1rem;
 }
 
-.full-email-header {
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
+.mail-reader {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem;
 }
 
-.full-email-subject {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+.mail-title {
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--text-main);
+    margin: 0 0 1.5rem 0;
 }
 
-.full-email-sender {
+.mail-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 2.5rem;
+}
+
+.mail-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--purple-light);
+    color: var(--purple-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.mail-sender {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.mail-author {
+    font-weight: 600;
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: var(--text-main);
 }
 
-.iframe-container {
+.mail-body-wrapper {
+    flex: 1;
+    display: flex;
+}
+
+#mail-frame {
     width: 100%;
-    min-height: 400px;
+    height: 100%;
     border: none;
 }
 
-/* Animations & States */
 .spin {
     animation: spin 1s linear infinite;
+    transform-origin: 50% 50%;
 }
 
 @keyframes spin {
     100% { transform: rotate(360deg); }
 }
 
-/* Toast Notifications */
 #toast-container {
     position: fixed;
     bottom: 2rem;
