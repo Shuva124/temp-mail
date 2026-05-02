@@ -1,5 +1,8 @@
 import express from "express";
+import "./jobs/cleanup.job.js"
+
 const app = express();
+
 const addressRoute = require("./src/route/addressRoute");
 
 
