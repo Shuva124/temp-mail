@@ -220,6 +220,30 @@ function drawList() {
     });
 }
 
+function fmtMail(obj) {
+    if (obj.html && obj.html.trim() !== '') return obj.html;
+    
+    let txt = obj.body || obj.text || '';
+    if (/<[a-z][\s\S]*>/i.test(txt)) return txt;
+    
+    let node = document.createElement('div');
+    node.textContent = txt;
+    let safe = node.innerHTML;
+
+    const regx = /(https?:\/\/[^\s<()]+)/g;
+    safe = safe.replace(regx, str => {
+        let cln = str;
+        let end = '';
+        if (/[.,;?!]$/.test(cln)) {
+            end = cln.slice(-1);
+            cln = cln.slice(0, -1);
+        }
+        return `<a href="${cln}" target="_blank">${cln}</a>${end}`;
+    });
+
+    return safe.replace(/\n/g, '<br>');
+}
+
 function showMail(id) {
     actvId = id;
     drawList();
@@ -249,7 +273,7 @@ function showMail(id) {
     `;
 
     const frame = document.getElementById('mail-frame');
-    const mailData = item.email.body || item.email.html || item.email.text || '';
+    const htmlObj = fmtMail(item.email);
     
     frame.srcdoc = `
         <!DOCTYPE html>
@@ -259,7 +283,7 @@ function showMail(id) {
                 body {
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
                     color: #111827;
-                    line-height: 1.5;
+                    line-height: 1.6;
                     margin: 0;
                     padding: 0 0.5rem;
                     font-size: 0.875rem;
@@ -268,11 +292,20 @@ function showMail(id) {
                 img {
                     max-width: 100%;
                     height: auto;
+                    display: block;
+                    margin: 0.5rem 0;
+                }
+                a {
+                    color: #7c3aed;
+                    text-decoration: underline;
+                }
+                a:hover {
+                    color: #6d28d9;
                 }
             </style>
         </head>
         <body>
-            ${mailData}
+            ${htmlObj}
         </body>
         </html>
     `;
